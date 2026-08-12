@@ -1,9 +1,13 @@
 # .github/ISSUE_TEMPLATE/config.yml
 blank_issues_enabled: false
 contact_links:
+  # /index.php/contact-us/ deliberately, NOT /contact/. The domain still serves the
+  # old WordPress site until DNS cutover, where /contact/ is a 404 — and this is the
+  # only door for people without a GitHub account. public/_redirects in the site repo
+  # 301s this path to /contact/ after cutover, so it works in both eras.
   - name: Email (no GitHub account needed)
-    url: https://www.mountainmanrockets.com/contact/
-    about: I'll file the issue here for you.
+    url: https://www.mountainmanrockets.com/index.php/contact-us/
+    about: Write to admin@mountainmanrockets.com and I'll file the issue here for you.
   - name: GPS Rocket Locator (Android app)
     url: https://github.com/mtnmanak/rocket_locator/issues
     about: The Android app keeps its own issue tracker — file there instead.

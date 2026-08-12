@@ -6,7 +6,7 @@ online tools**:
 
 | Tool | Open its queue |
 |---|---|
-| [Online OpenRocket](https://openrocket.mountainmanrockets.com) | [issues](../../issues?q=is%3Aopen+label%3Atool%3Aonline-openrocket) |
+| [Online OpenRocket](https://online-open-rocket.pages.dev) | [issues](../../issues?q=is%3Aopen+label%3Atool%3Aonline-openrocket) |
 | Motor Dashboard | [issues](../../issues?q=is%3Aopen+label%3Atool%3Amotor-dashboard) |
 | Motor Simulator | [issues](../../issues?q=is%3Aopen+label%3Atool%3Amotor-simulator) |
 | Black Powder Calculator | [issues](../../issues?q=is%3Aopen+label%3Atool%3Abp-calculator) |
@@ -27,7 +27,8 @@ online tools**:
   [issue tracker](https://github.com/mtnmanak/rocket_locator/issues)
 - **Questions and discussion about a page's content** — use the comments on
   that page
-- **Anything else** — the [contact page](https://www.mountainmanrockets.com/contact/)
+- **Anything else** — the
+  [contact page](https://www.mountainmanrockets.com/index.php/contact-us/)
 
 The [open issues](../../issues) list is the real queue — it's what I work
 from, so anything filed here is logged, visible, and not forgotten.
