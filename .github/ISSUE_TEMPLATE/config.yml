@@ -1,0 +1,9 @@
+# .github/ISSUE_TEMPLATE/config.yml
+blank_issues_enabled: false
+contact_links:
+  - name: Email (no GitHub account needed)
+    url: https://www.mountainmanrockets.com/contact/
+    about: I'll file the issue here for you.
+  - name: GPS Rocket Locator (Android app)
+    url: https://github.com/mtnmanak/rocket_locator/issues
+    about: The Android app keeps its own issue tracker — file there instead.
