@@ -1,9 +1,20 @@
 # .github/workflows/apply-tool-label.yml
 #
-# Public filers can't set labels, so this reads the issue form's
-# "Where did this happen?" / "Which tool is this about?" dropdown answer
-# and applies the matching tool:/area: label.
-name: Apply tool label
+# Public filers can't set labels, so this reads the issue form's dropdown answers
+# and applies the matching labels. Two independent axes:
+#
+#   SURFACE  "Where did this happen?" / "Which tool is this about?"
+#            -> tool:* or area:site
+#   KIND     "What kind of problem is it?"  (bug form only)
+#            -> design or content, replacing the form's declared "bug"
+#
+# The KIND axis exists because "bug" means something does not work, and a badly
+# cropped photo is no more a bug than a typo is. Eric's ruling, feedback-08-09-2026a.
+#
+# ⚠️ Every string in the two maps below must match the dropdown option text in
+# bug-report.yml / feature-request.yml BYTE FOR BYTE. Do not edit one without the
+# other. A mismatch fails SILENTLY — this workflow goes green and applies nothing.
+name: Apply issue labels
 on:
   issues:
     types: [opened]
@@ -17,20 +28,61 @@ jobs:
         with:
           script: |
             const body = context.payload.issue.body || '';
-            const map = {
+            const issue_number = context.payload.issue.number;
+
+            // The form renders each answer as "### <question>\n\n<answer>".
+            const answer = (question) => {
+              const m = body.match(
+                new RegExp('### ' + question + '\\s*\\n+([^\\n]+)'),
+              );
+              return m ? m[1].trim() : null;
+            };
+
+            const surfaceMap = {
               'Online OpenRocket': 'tool:online-openrocket',
               'Motor Dashboard': 'tool:motor-dashboard',
               'Motor Simulator': 'tool:motor-simulator',
               'Black Powder Calculator': 'tool:bp-calculator',
               'The mountainmanrockets.com website itself': 'area:site',
             };
-            // The form renders the dropdown as "### <question>\n\n<answer>".
-            const m = body.match(/### (?:Where did this happen\?|Which tool is this about\?)\s*\n+([^\n]+)/);
-            const label = m && map[m[1].trim()];
-            if (label) {
+            const kindMap = {
+              'It looks wrong (spacing, layout, a bad crop)': 'design',
+              'The words, photos or data are wrong or out of date': 'content',
+            };
+
+            const add = [];
+
+            const surface =
+              surfaceMap[
+                answer('(?:Where did this happen\\?|Which tool is this about\\?)')
+              ];
+            if (surface) add.push(surface);
+
+            // Unmatched kind (including "Not sure", and the feature form, which has
+            // no kind dropdown) deliberately falls through to the form's declared
+            // label. Absence of a match is never an error.
+            const kind = kindMap[answer('What kind of problem is it\\?')];
+            if (kind) add.push(kind);
+
+            if (add.length) {
               await github.rest.issues.addLabels({
                 ...context.repo,
-                issue_number: context.payload.issue.number,
-                labels: [label],
+                issue_number,
+                labels: add,
               });
+            }
+
+            // Only after the replacement is safely on: "bug" is the form's default,
+            // and design/content contradict it. removeLabel 404s when the label is
+            // already absent, which is not a failure worth going red over.
+            if (kind) {
+              try {
+                await github.rest.issues.removeLabel({
+                  ...context.repo,
+                  issue_number,
+                  name: 'bug',
+                });
+              } catch (e) {
+                if (e.status !== 404) throw e;
+              }
             }

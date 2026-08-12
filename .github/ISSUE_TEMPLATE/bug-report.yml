@@ -1,6 +1,10 @@
 # .github/ISSUE_TEMPLATE/bug-report.yml
 name: Bug report
-description: Something is broken or behaving wrong
+description: Something is broken, looks wrong, or is out of date
+# "bug" is the DEFAULT, not the verdict. The kind dropdown below can swap it for
+# design or content via .github/workflows/apply-tool-label.yml. It is declared here
+# rather than left to the workflow so that an issue is never label-less if the
+# workflow is disabled or fails — the common case stays correct with no automation.
 labels: ["bug", "needs-triage"]
 body:
   - type: dropdown
@@ -14,6 +18,21 @@ body:
         - Black Powder Calculator
         - The mountainmanrockets.com website itself
         - Something else / not sure
+    validations:
+      required: true
+  # ⚠️ These option strings are matched BYTE FOR BYTE by apply-tool-label.yml.
+  # Deliberately plain ASCII — no em dashes, no curly quotes. A mismatch fails
+  # silently: the workflow runs green and simply applies no label.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of problem is it?
+      description: "\"Broken\" and \"looks wrong\" are different jobs, so they get different labels."
+      options:
+        - Something is broken or does not work
+        - It looks wrong (spacing, layout, a bad crop)
+        - The words, photos or data are wrong or out of date
+        - Not sure
     validations:
       required: true
   - type: textarea
