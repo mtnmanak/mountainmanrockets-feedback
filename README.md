@@ -17,6 +17,9 @@ online tools**:
 - **Have a GitHub account?** [Report a bug](../../issues/new?template=bug-report.yml)
   or [request a feature](../../issues/new?template=feature-request.yml). The
   form asks which tool you were using — that's all the routing needed.
+- **Feature requests include content** — things the site could do, *or content
+  you'd like to see covered*. "Can you write up how to assemble an Aerotech RMS
+  motor" is a perfectly good issue here.
 - **No GitHub account?** Email
   [admin@mountainmanrockets.com](mailto:admin@mountainmanrockets.com) and I'll
   file it here myself. You don't need an account to *read* anything here.
