@@ -39,7 +39,7 @@ jobs:
             };
 
             const surfaceMap = {
-              'Online OpenRocket': 'tool:online-openrocket',
+              'MMRocket Sim': 'tool:mmrocket-sim',
               'Motor Dashboard': 'tool:motor-dashboard',
               'Motor Simulator': 'tool:motor-simulator',
               'Black Powder Calculator': 'tool:bp-calculator',

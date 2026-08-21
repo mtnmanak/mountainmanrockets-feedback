@@ -12,7 +12,7 @@ body:
     attributes:
       label: Where did this happen?
       options:
-        - Online OpenRocket
+        - MMRocket Sim
         - Motor Dashboard
         - Motor Simulator
         - Black Powder Calculator

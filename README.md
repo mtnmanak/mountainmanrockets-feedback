@@ -6,7 +6,7 @@ online tools**:
 
 | Tool | Open its queue |
 |---|---|
-| [Online OpenRocket](https://online-open-rocket.pages.dev) | [issues](../../issues?q=is%3Aopen+label%3Atool%3Aonline-openrocket) |
+| [MMRocket Sim](https://online-open-rocket.pages.dev) | [issues](../../issues?q=is%3Aopen+label%3Atool%3Ammrocket-sim) |
 | Motor Dashboard | [issues](../../issues?q=is%3Aopen+label%3Atool%3Amotor-dashboard) |
 | Motor Simulator | [issues](../../issues?q=is%3Aopen+label%3Atool%3Amotor-simulator) |
 | Black Powder Calculator | [issues](../../issues?q=is%3Aopen+label%3Atool%3Abp-calculator) |
