@@ -46,7 +46,7 @@ body:
     id: version
     attributes:
       label: Tool version (if shown)
-      description: "Online OpenRocket shows it next to the logo, e.g. v0.042 beta."
+      description: "MMRocket Sim shows it next to the logo, e.g. v0.042 beta."
   - type: input
     id: browser
     attributes:
